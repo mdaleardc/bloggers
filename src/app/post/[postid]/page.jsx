@@ -5,7 +5,7 @@ import { getAuthor } from "@/lib/firebase/author/read_server";
 
 export async function generateMetadata({ params }) {
   // read route params
-const { postid } = params;
+const { postid } = await params;
   const post = await getPost(postid);
  
   return {
@@ -19,7 +19,7 @@ const { postid } = params;
  
 
 export default async function SinglePostPage({params}) {
-  const { postid } = params;
+  const { postid } = await params;
   const post = await getPost(postid);
   return <div className='mt-[3rem] py-4 mx-auto w-11/12 sm:w-10/12 flex flex-col gap-2 bg-zinc-50 px-2 rounded-sm shadow-sm'>
   <CategoryCard categoryId={post?.categoryId} />
