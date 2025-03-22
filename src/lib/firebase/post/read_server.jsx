@@ -1,13 +1,12 @@
 import { db } from "@/lib/Firebase";
-import { collection, getDocs, doc, getDoc, where, query } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, onSnapshot, where, query } from "firebase/firestore";
 
 export const dynamic = "force-dynamic"; // Force fresh fetch on every request
 export const fetchCache = "no-store"; // Disable Vercel's data caching
 export const revalidate = 0; // Prevent Next.js from caching
 
 export const getAllPosts = async () => {
-  return await getDocs(collection(db, "posts"), { source: "server" }) // Fetch directly from Firestore
-    .then((snaps) => snaps.docs.map((d) => ({ id: d.id, ...d.data() })));
+  return await getDocs(collection(db, "posts"), { source: "server" }).then((snaps) => snaps.docs.map((d) => ({ id: d.id, ...d.data() })));
 };
 
 export const getAllPostsWithCategory = async (categoryId) => {
