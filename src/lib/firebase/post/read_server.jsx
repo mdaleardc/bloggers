@@ -5,22 +5,8 @@ export const dynamic = "force-dynamic"; // Force fresh fetch on every request
 export const fetchCache = "no-store"; // Disable Vercel's data caching
 export const revalidate = 0; // Prevent Next.js from caching
 
-/*export const getAllPosts = async () => {
-  return await getDocs(collection(db, "posts"), { source: "server" }).then((snaps) => snaps.docs.map((d) => ({ id: d.id, ...d.data() })));
-};*/
-
 export const getAllPosts = async () => {
-  return await getDocs(collection(db, "posts"), { source: "server" })
-    .then((snaps) => snaps.docs.map((d) => {
-      const data = d.data();
-      return {
-        id: d.id,
-        ...data,
-        timestamp: data.timestamp && data.timestamp.toDate 
-          ? data.timestamp.toDate() // Convert Firestore Timestamp to JavaScript Date
-          : new Date(data.timestamp), // Convert string timestamp (if stored as a string)
-      };
-    }));
+  return await getDocs(collection(db, "posts"), { source: "server" }).then((snaps) => snaps.docs.map((d) => ({ id: d.id, ...d.data() })));
 };
 
 export const getAllPostsWithCategory = async (categoryId) => {

@@ -41,7 +41,7 @@ export function PostCard({post}) {
         <h1 className='text-xl font-semibold mt-2 text-zinc-800'>{post?.title}</h1>
         <div className="flex justify-between items-center">
         <AuthorCard authorId={post?.authorId}/>
-        {/*<p className='text-xs text-zinc-500'>{post?.timestamp ? post?.timestamp?.toDate()?.toLocaleDateString() : "Unknown"}</p>*/}
+        <p className='text-xs text-zinc-500'>{post?.timestamp?.toDate()?.toLocaleDateString()}</p>
         </div>
   </Link>
 }
