@@ -1,7 +1,11 @@
-import {getCategory} from "@/lib/firebase/category/read_server";
-import {getAuthor} from "@/lib/firebase/author/read_server";
-import {getAllPosts} from "@/lib/firebase/post/read_server";
+import { getCategory } from "@/lib/firebase/category/read_server";
+import { getAuthor } from "@/lib/firebase/author/read_server";
+import { getAllPosts } from "@/lib/firebase/post/read_server";
 import Link from "next/link"
+
+export const fetchCache = "no-store";
+export const revalidate = 0; // This tells Next.js to re-fetch on every request
+
 
 
 export default async function PostListView() {
