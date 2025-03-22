@@ -10,7 +10,8 @@ export const revalidate = 0; // Prevent Next.js from caching
 };*/
 
 export const getAllPosts = async () => {
-  const q = query(collection(db, "posts"), where("id", "!=", "")); // Fetch posts where 'id' is not empty
+  const notId = "asdkljasdjfkj";
+  const q = query(collection(db, "posts"), where("id", "!=", notId)); // Fetch posts where 'id' is not empty
   return await getDocs(q, { source: "server" })
     .then((snaps) => snaps.docs.map((d) => ({ id: d.id, ...d.data() })));
 };
