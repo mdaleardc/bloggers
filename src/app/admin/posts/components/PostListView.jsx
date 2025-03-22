@@ -28,14 +28,14 @@ export default function PostListView() {
     </thead>
     <tbody>
       {data.map(({ id, title, slug, imageUrl, timestamp }, index) => {
-      const trucnketTitle = title?.length > 30 ? title.slice(0, 25) + " ..." : title;
-      const trucnketSlug = slug?.length > 30 ? slug.slice(0, 25) + " ..." : slug;
+      const truncatedTitle = title?.length > 30 ? title.slice(0, 25) + " ..." : title;
+      const truncatedSlug = slug?.length > 30 ? slug.slice(0, 25) + " ..." : slug;
       return (
         <tr key={id} className="border odd:bg-zinc-100">
           <td className="border px-3">{index + 1}</td>
           <td className="border px-3"><img className="h-10 w-full object-cover" src={imageUrl}/></td>
-          <td className="border px-3">{trucnketTitle}</td>
-          <td className="border px-3">{trucnketSlug}</td>
+          <td className="border px-3">{truncatedTitle}</td>
+          <td className="border px-3">{truncatedSlug}</td>
           <td className="border whitespace-nowrap px-3">{timestamp?.toDate()?.toLocaleDateString()}</td>
           <td className="border px-3">
           <Link href={`posts/form?id=${id}`}>
