@@ -3,9 +3,10 @@ import { getAuthor } from "@/lib/firebase/author/read_server";
 import { getAllPosts } from "@/lib/firebase/post/read_server";
 import Link from "next/link"
 
-export const fetchCache = "no-store";
-export const revalidate = 0; // This tells Next.js to re-fetch on every request
-
+export const dynamic = "force-dynamic"; // Forces Next.js to fetch fresh data
+export const headers = {
+  "Cache-Control": "no-store, max-age=0",
+};
 
 
 export default async function PostListView() {
