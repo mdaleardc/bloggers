@@ -3,11 +3,9 @@ import { getAuthor } from "@/lib/firebase/author/read_server";
 import { getAllPosts } from "@/lib/firebase/post/read_server";
 import Link from "next/link"
 
-export const dynamic = "force-dynamic"; // Forces Next.js to fetch fresh data
-export const headers = {
-  "Cache-Control": "no-store, max-age=0",
-};
-
+export const dynamic = "force-dynamic"; // Force fresh fetch on every request
+export const fetchCache = "no-store"; // Disable Vercel's data caching
+export const revalidate = 0; // Prevent Next.js from caching
 
 export default async function PostListView() {
   const posts = await getAllPosts();
