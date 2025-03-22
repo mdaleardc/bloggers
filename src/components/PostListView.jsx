@@ -3,10 +3,11 @@ import { getAuthor } from "@/lib/firebase/author/read_server";
 import { getAllPosts } from "@/lib/firebase/post/read_server";
 import Link from "next/link"
 
-export const dynamic = "force-dynamic"; // Force fresh fetch on every request
-export const fetchCache = "no-store"; // Disable Vercel's data caching
-export const revalidate = 0; // Prevent Next.js from caching
-
+export const dynamic = "force-dynamic"; // Forces fresh fetch from Firestore
+export const revalidate = 0; // Ensures no ISR (Incremental Static Regeneration)
+export const headers = {
+  "Cache-Control": "no-store, max-age=0", // Prevents caching
+};
 export default async function PostListView() {
   const posts = await getAllPosts();
   if(!posts) {
@@ -40,7 +41,7 @@ export function PostCard({post}) {
         <h1 className='text-xl font-semibold mt-2 text-zinc-800'>{post?.title}</h1>
         <div className="flex justify-between items-center">
         <AuthorCard authorId={post?.authorId}/>
-        <p className='text-xs text-zinc-500'>{post?.timestamp?.toDate()?.toLocaleDateString()}</p>
+        {/*<p className='text-xs text-zinc-500'>{post?.timestamp ? post?.timestamp?.toDate()?.toLocaleDateString() : "Unknown"}</p>*/}
         </div>
   </Link>
 }

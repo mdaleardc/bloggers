@@ -10,10 +10,17 @@ export const revalidate = 0; // Prevent Next.js from caching
 };*/
 
 export const getAllPosts = async () => {
-  const notId = "asdkljasdjfkj";
-  const q = query(collection(db, "posts"), where("id", "!=", notId)); // Fetch posts where 'id' is not empty
-  return await getDocs(q, { source: "server" })
-    .then((snaps) => snaps.docs.map((d) => ({ id: d.id, ...d.data() })));
+  return await getDocs(collection(db, "posts"), { source: "server" })
+    .then((snaps) => snaps.docs.map((d) => {
+      const data = d.data();
+      return {
+        id: d.id,
+        ...data,
+        timestamp: data.timestamp && data.timestamp.toDate 
+          ? data.timestamp.toDate() // Convert Firestore Timestamp to JavaScript Date
+          : new Date(data.timestamp), // Convert string timestamp (if stored as a string)
+      };
+    }));
 };
 
 export const getAllPostsWithCategory = async (categoryId) => {
