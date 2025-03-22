@@ -4,7 +4,7 @@ import { PostCard, CategoryCard } from "@/components/PostListView";
 
 
 export default async function PostsByCategoryPage({ params }) {
-  const { categoryId } = params;
+  const { categoryId } = await params;
   const postWithCategory = await getAllPostsWithCategory(categoryId);
   return <main className='w-full mt-[3rem] p-6'>
     <div className='flex items-center gap-2'>

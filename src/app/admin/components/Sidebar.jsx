@@ -10,7 +10,7 @@ export default function AdminSidebar() {
       icon: <Gauge />
     },
     {
-      name: "Post",
+      name: "Posts",
       link: "/admin/posts",
       icon: <LayoutList />
     },  

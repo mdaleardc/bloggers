@@ -14,7 +14,7 @@ const Header = () => {
   
   return (
     <div>
-    <nav className='border-b shadow-lg py-2 px-5 flex items-center justify-between fixed top-0 left-0 w-full z-50 bg-zinc-200'>
+    <nav className='border-b shadow-lg py-2 px-5 flex items-center justify-between fixed top-0 left-0 w-full z-50 bg-zinc-200 text-xl'>
     <Link href='/'>
     <h1 className="font-mono font-bold text-[orange] w-fit px-1 rounded-full tracking-tight bg-black flex items-center">NGenCode</h1>
     </Link>
