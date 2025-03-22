@@ -66,5 +66,3 @@ async function AuthorCard({authorId}) {
   </div>
   </div>
 }
-
-
